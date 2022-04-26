@@ -19,7 +19,12 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "nodemon": "^2.0.15"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@hapi/hapi": "^20.2.1",
+    "handlebars": "^4.7.7",
+    "@hapi/vision": "^6.1.0"
+  }
 }
