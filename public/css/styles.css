@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2022.
+ */
+
+.background-img {
+    min-height: 100vh;
+    object-fit: cover;
+}
+
+.is-180x180 {
+    width: 180px;
+    height: 180px;
+}

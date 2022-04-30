@@ -1,0 +1,25 @@
+<section class="columns">
+  <div class="column is-half-desktop p-6 is-flex is-flex-direction-column is-align-items-stretch">
+    <div class="is-flex is-justify-content-center">
+      <img class="image is-180x180" src="/images/placemark.png" alt="Placemark logo">
+    </div>
+    <h1 class="title has-text-centered">Log in</h1>
+    <form action="/authenticate" method="POST" >
+      <div class="field">
+        <label class="label">Email</label>
+        <input class="input" type="text" placeholder="Enter email" name="email">
+      </div>
+      <div class="field">
+        <label class="label">Password</label>
+        <input class="input" type="password" placeholder="Enter Password" name="password">
+      </div>
+      <div class="field pt-4 is-flex is-align-items-center">
+        <button class="button is-link mr-4">Submit</button>
+        <span>Don't have an account? <a href="/signup">Sign up</a></span>
+      </div>
+    </form>
+  </div>
+  <div class="column is-half-desktop is-hidden-mobile p-0">
+    <img class="background-img" src="/images/gps-location.svg" alt="map">
+  </div>
+</section>
