@@ -1,3 +1,4 @@
+import Cookie from "@hapi/cookie";
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
@@ -6,6 +7,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
+import { db } from "./models/db.js";
+import { authController } from "./controllers/auth-controller.js";
+import config from "./config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,6 +21,7 @@ async function init() {
   });
   await server.register(Vision);
   await server.register(Inert);
+  await server.register(Cookie);
 
   server.views({
     engines: {
@@ -29,6 +34,17 @@ async function init() {
     layout: true,
     isCached: false,
   });
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: config.cookie.name,
+      password: config.cookie.password,
+      isSecure: false,
+    },
+    redirectTo: "/",
+    validateFunc: authController.validate.handler,
+  });
+  server.auth.default("session");
+  db.initMem();
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
