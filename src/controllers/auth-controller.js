@@ -45,7 +45,7 @@ export const authController = {
         return h.redirect("/");
       }
       request.cookieAuth.set({ id: user._id });
-      return h.redirect("/home");
+      return h.redirect("/pois");
     },
   },
   logout: {

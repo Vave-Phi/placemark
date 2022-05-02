@@ -1,0 +1,21 @@
+<form action="/pois/update/{{poi._id}}" method="POST">
+  <div class="field">
+    <label class="label">POI Name</label>
+    <input class="input" type="text" placeholder="Enter POI name" name="name" value="{{poi.name}}">
+  </div>
+  <div class="is-flex is-justify-content-space-between">
+    <div class="field">
+      <label class="label">Latitude</label>
+      <input class="input" type="text" placeholder="Enter latitude" name="lat" value="{{poi.lat}}">
+    </div>
+    <div class="field">
+      <label class="label">Longitude</label>
+      <input class="input" type="text" placeholder="Enter longitude" name="lng" value="{{poi.lng}}">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Description</label>
+    <textarea class="textarea" placeholder="Enter description" name="desc">{{poi.desc}}</textarea>
+  </div>
+  <button class="button is-link">Update POI</button>
+</form>

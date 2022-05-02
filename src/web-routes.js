@@ -9,10 +9,12 @@ export const webRoutes = [
   { method: "POST", path: "/register", config: authController.signup },
   { method: "POST", path: "/authenticate", config: authController.login },
 
-  { method: "GET", path: "/home", config: poiController.showHome },
-  { method: "GET", path: "/home/delete/{id}", config: poiController.delete },
-  { method: "POST", path: "/home/create", config: poiController.create },
-  { method: "PUT", path: "/home/update/{id}", config: poiController.update },
+  { method: "GET", path: "/pois", config: poiController.showHome },
+  { method: "GET", path: "/pois/{id}", config: poiController.showDetails },
+  { method: "GET", path: "/pois/{id}/edit", config: poiController.showEdit },
+  { method: "POST", path: "/pois/create", config: poiController.create },
+  { method: "POST", path: "/pois/update/{id}", config: poiController.update },
+  { method: "GET", path: "/pois/delete/{id}", config: poiController.delete },
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];

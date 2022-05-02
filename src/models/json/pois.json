@@ -1,3 +1,11 @@
 {
-  "pois": []
+  "pois": [
+    {
+      "name": "POI",
+      "_id": "3071736f-f8fd-40c4-bf61-a9e3ac1884e3",
+      "lat": 12332,
+      "lng": 123,
+      "desc": "Description yeah"
+    }
+  ]
 }

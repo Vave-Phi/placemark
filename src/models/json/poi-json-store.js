@@ -22,7 +22,7 @@ export const poiJsonStore = {
   async updatePoiById(id, changes) {
     await db.read();
     const index = db.data.pois.findIndex((p) => p._id === id);
-    db.data.pois[index] = { ...changes, ...db.data.pois[index] };
+    db.data.pois[index] = { ...db.data.pois[index], ...changes };
     await db.write();
   },
 
@@ -33,10 +33,8 @@ export const poiJsonStore = {
   },
 
   async deletePoiById(id) {
-    console.log(id);
     await db.read();
     const index = db.data.pois.findIndex((poi) => poi._id === id);
-    console.log(index);
     if (index > -1) db.data.pois.splice(index, 1);
     await db.write();
   },

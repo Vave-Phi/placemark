@@ -27,17 +27,20 @@ export const UserArray = Joi.array().items(UserSpecDomain).label("UserArray");
 
 export const PoiSpec = Joi.object()
   .keys({
-    name: Joi.string().example("Big Ben").required(),
+    name: Joi.string().example("OTH Regensburg").required(),
   })
   .label("PoiDetails");
 
 export const PoiSpecUpdate = Joi.object()
   .keys({
-    name: Joi.string().example("Big Ben"),
+    name: Joi.string().example("OTH Regensburg"),
+    lat: Joi.number().example(49.01643),
+    lng: Joi.number().example(12.10176),
+    desc: Joi.string().example("Lorem Ipsum"),
   })
   .label("PoiDetails");
 
-export const PoiSpecDomain = UserSpec.keys({
+export const PoiSpecDomain = PoiSpecUpdate.keys({
   _id: IdSpec,
   __v: Joi.number(),
 }).label("PoiDetailsDomain");

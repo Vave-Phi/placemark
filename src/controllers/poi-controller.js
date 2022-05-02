@@ -1,7 +1,7 @@
 import { db } from "../models/db.js";
 import { PoiSpec, PoiSpecUpdate } from "../db/joi-schemas.js";
 
-async function getViewData(request) {
+async function getHomeViewData(request) {
   const user = request.auth.credentials;
   const pois = await db.poiStore.getAllPois();
   return {
@@ -11,12 +11,34 @@ async function getViewData(request) {
   };
 }
 
+async function getPoiViewData(request) {
+  const { id } = request.params;
+  const user = request.auth.credentials;
+  const poi = await db.poiStore.getPoiById(id);
+  return {
+    title: "Placemark - POI Details",
+    poi,
+    user,
+  };
+}
+
 export const poiController = {
   showHome: {
-    auth: false,
     handler: async function (request, h) {
-      const viewData = await getViewData(request);
+      const viewData = await getHomeViewData(request);
       return h.view("home-view", viewData);
+    },
+  },
+  showDetails: {
+    handler: async function (request, h) {
+      const viewData = await getPoiViewData(request);
+      return h.view("poi-view", viewData);
+    },
+  },
+  showEdit: {
+    handler: async function (request, h) {
+      const viewData = await getPoiViewData(request);
+      return h.view("poi-edit-view", viewData);
     },
   },
   create: {
@@ -24,7 +46,7 @@ export const poiController = {
       payload: PoiSpec,
       options: { abortEarly: false },
       failAction: async function (request, h, error) {
-        const viewData = await getViewData(request);
+        const viewData = await getHomeViewData(request);
         return h
           .view("home-view", { ...viewData, errors: error.details })
           .takeover()
@@ -33,7 +55,7 @@ export const poiController = {
     },
     handler: async function (request, h) {
       await db.poiStore.addPoi(request.payload);
-      return h.redirect("/home");
+      return h.redirect("/pois");
     },
   },
   update: {
@@ -41,9 +63,9 @@ export const poiController = {
       payload: PoiSpecUpdate,
       options: { abortEarly: false },
       failAction: async function (request, h, error) {
-        const viewData = await getViewData(request);
+        const viewData = await getPoiViewData(request);
         return h
-          .view("home-view", { ...viewData, errors: error.details })
+          .view("poi-view", { ...viewData, errors: error.details })
           .takeover()
           .code(400);
       },
@@ -51,14 +73,14 @@ export const poiController = {
     handler: async function (request, h) {
       const { id } = request.params;
       await db.poiStore.updatePoiById(id, request.payload);
-      return h.redirect("/home");
+      return h.redirect(`/pois/${id}`);
     },
   },
   delete: {
     handler: async function (request, h) {
       const { id } = request.params;
       await db.poiStore.deletePoiById(id);
-      return h.redirect("/home");
+      return h.redirect("/pois");
     },
   },
 };
