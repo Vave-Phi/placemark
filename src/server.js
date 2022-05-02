@@ -44,7 +44,8 @@ async function init() {
     validateFunc: authController.validate.handler,
   });
   server.auth.default("session");
-  db.initMem();
+  // db.initMem();
+  db.initJSON();
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

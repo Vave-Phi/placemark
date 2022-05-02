@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "__v": 0,
+      "_id": "d06fafd3-6683-4670-bb43-f4f88e8aeb0e"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "_id": "80ae122a-fa89-40d8-99d3-33dcca03f0fa"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "3525a7f5-20eb-4568-8489-b3ab8dd42e1c"
+    },
+    {
+      "firstName": "Philipp",
+      "lastName": "Bachfischer",
+      "email": "philipp.bachfischer@t-online.de",
+      "password": "Test",
+      "_id": "603111aa-fedf-4ce9-a191-4e3805c4b32f"
+    }
+  ]
+}

@@ -8,10 +8,13 @@ export const UserSpec = Joi.object()
     lastName: Joi.string().example("Simpson").required(),
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
-    _id: IdSpec,
-    __v: Joi.number(),
   })
   .label("UserDetails");
+
+export const UserSpecDomain = UserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("UserDetailsDomain");
 
 export const UserCredentialsSpec = Joi.object()
   .keys({
@@ -20,4 +23,21 @@ export const UserCredentialsSpec = Joi.object()
   })
   .label("UserCredentials");
 
-export const UserArray = Joi.array().items(UserSpec).label("UserArray");
+export const UserArray = Joi.array().items(UserSpecDomain).label("UserArray");
+
+export const PoiSpec = Joi.object()
+  .keys({
+    name: Joi.string().example("Big Ben").required(),
+  })
+  .label("PoiDetails");
+
+export const PoiSpecUpdate = Joi.object()
+  .keys({
+    name: Joi.string().example("Big Ben"),
+  })
+  .label("PoiDetails");
+
+export const PoiSpecDomain = UserSpec.keys({
+  _id: IdSpec,
+  __v: Joi.number(),
+}).label("PoiDetailsDomain");
