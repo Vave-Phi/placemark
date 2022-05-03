@@ -3,14 +3,26 @@
     <label class="label">POI Name</label>
     <input class="input" type="text" placeholder="Enter POI name" name="name" value="{{poi.name}}">
   </div>
-  <div class="is-flex is-justify-content-space-between">
-    <div class="field">
+  <div class="columns">
+    <div class="column is-one-quarter-desktop is-one-quarter-tablet field">
       <label class="label">Latitude</label>
       <input class="input" type="text" placeholder="Enter latitude" name="lat" value="{{poi.lat}}">
     </div>
-    <div class="field">
+    <div class="column is-one-quarter-desktop is-one-quarter-tablet field">
       <label class="label">Longitude</label>
       <input class="input" type="text" placeholder="Enter longitude" name="lng" value="{{poi.lng}}">
+    </div>
+    <div class="column field is-half-desktop is-half-tablet is-full-mobile">
+      <label class="label">Category</label>
+      <div class="select is-fullwidth">
+        <select name="category">
+          {{#select poi.category}}
+            {{#each options}}
+              <option value="{{name}}">{{name}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+      </div>
     </div>
   </div>
   <div class="field">

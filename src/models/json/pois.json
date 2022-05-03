@@ -1,11 +1,28 @@
 {
   "pois": [
     {
-      "name": "POI",
-      "_id": "3071736f-f8fd-40c4-bf61-a9e3ac1884e3",
-      "lat": 12332,
-      "lng": 123,
-      "desc": "Description yeah"
+      "name": "OTH Regensburg",
+      "lat": 49.01643,
+      "lng": 12.10176,
+      "category": "University",
+      "desc": "Technical University of Regensburg",
+      "_id": "1517c393-af1b-4e99-8e60-790ccd59419c"
+    },
+    {
+      "name": "Stone Bridge",
+      "lat": 49.02234,
+      "lng": 12.09722,
+      "category": "Bridge",
+      "desc": "Stone bridge in Regensburg",
+      "_id": "c7e69620-a79b-422c-b577-09bdcdf08017"
+    },
+    {
+      "firstName": "Regensburg Cathedral",
+      "lat": 49.01906,
+      "lng": 12.09951,
+      "category": "Church",
+      "desc": "Regensburg Cathedral (German: Dom St. Peter or Regensburger Dom), also known as St. Peter's Cathedral, is an example of important Gothic architecture within the German state of Bavaria.[1] It is a landmark for the city of Regensburg, Germany, and the seat of the Catholic Diocese of Regensburg.",
+      "_id": "5b4e7b48-5355-4e4a-b3d3-0c6a9494a6f8"
     }
   ]
 }

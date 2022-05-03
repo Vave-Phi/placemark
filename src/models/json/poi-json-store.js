@@ -22,6 +22,7 @@ export const poiJsonStore = {
   async updatePoiById(id, changes) {
     await db.read();
     const index = db.data.pois.findIndex((p) => p._id === id);
+    if (index < 0) return;
     db.data.pois[index] = { ...db.data.pois[index], ...changes };
     await db.write();
   },

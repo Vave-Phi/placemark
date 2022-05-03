@@ -37,6 +37,7 @@ export const PoiSpecUpdate = Joi.object()
     lat: Joi.number().example(49.01643),
     lng: Joi.number().example(12.10176),
     desc: Joi.string().example("Lorem Ipsum"),
+    category: Joi.string().example("University"),
   })
   .label("PoiDetails");
 

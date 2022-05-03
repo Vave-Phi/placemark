@@ -1,33 +1,25 @@
 {
   "users": [
     {
-      "firstName": "Bart",
+      "firstName": "Homer",
       "lastName": "Simpson",
-      "email": "bart@simpson.com",
+      "email": "homer@simpson.com",
       "password": "secret",
-      "__v": 0,
-      "_id": "d06fafd3-6683-4670-bb43-f4f88e8aeb0e"
+      "_id": "b8b9bfef-ff49-43fb-8115-ee1873b42b01"
     },
     {
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
       "password": "secret",
-      "_id": "80ae122a-fa89-40d8-99d3-33dcca03f0fa"
+      "_id": "2cd4b48d-5fdb-4d85-a7e8-08947c11b341"
     },
     {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
       "password": "secret",
-      "_id": "3525a7f5-20eb-4568-8489-b3ab8dd42e1c"
-    },
-    {
-      "firstName": "Philipp",
-      "lastName": "Bachfischer",
-      "email": "philipp.bachfischer@t-online.de",
-      "password": "Test",
-      "_id": "603111aa-fedf-4ce9-a191-4e3805c4b32f"
+      "_id": "a18cc656-a6f8-42ac-a76f-1bd6f0f5d56a"
     }
   ]
 }

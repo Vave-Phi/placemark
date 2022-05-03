@@ -20,7 +20,8 @@ export const poiMemStore = {
 
   async updatePoiById(id, changes) {
     const index = pois.findIndex((p) => p._id === id);
-    pois[index] = { ...changes, ...pois[index] };
+    if (index < 0) return;
+    pois[index] = { ...pois[index], ...changes };
   },
 
   async deletePoiById(id) {

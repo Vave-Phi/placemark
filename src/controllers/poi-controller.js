@@ -1,5 +1,6 @@
 import { db } from "../models/db.js";
 import { PoiSpec, PoiSpecUpdate } from "../db/joi-schemas.js";
+import { POI_CATEGORIES } from "../constants.js";
 
 async function getHomeViewData(request) {
   const user = request.auth.credentials;
@@ -38,7 +39,7 @@ export const poiController = {
   showEdit: {
     handler: async function (request, h) {
       const viewData = await getPoiViewData(request);
-      return h.view("poi-edit-view", viewData);
+      return h.view("poi-edit-view", { ...viewData, options: POI_CATEGORIES });
     },
   },
   create: {

@@ -10,6 +10,7 @@ import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
 import { authController } from "./controllers/auth-controller.js";
 import config from "./config.js";
+import hbsConfig from "./hbs-config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,6 +47,7 @@ async function init() {
   server.auth.default("session");
   // db.initMem();
   db.initJSON();
+  hbsConfig();
   server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
