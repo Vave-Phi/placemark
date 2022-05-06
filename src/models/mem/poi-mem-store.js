@@ -3,7 +3,10 @@ import { v4 } from "uuid";
 let pois = [];
 
 export const poiMemStore = {
-  async getAllPois() {
+  async getAllPois(filter) {
+    if (filter) {
+      return pois.filter((p) => p.name?.toLowerCase().includes(filter.toLowerCase()));
+    }
     return pois;
   },
 

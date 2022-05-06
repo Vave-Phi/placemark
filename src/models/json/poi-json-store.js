@@ -6,8 +6,11 @@ const db = new Low(new JSONFile("./src/models/json/pois.json"));
 db.data = { pois: [] };
 
 export const poiJsonStore = {
-  async getAllPois() {
+  async getAllPois(filter) {
     await db.read();
+    if (filter) {
+      return db.data.pois.filter((p) => p.name?.toLowerCase().includes(filter?.toLowerCase()));
+    }
     return db.data.pois;
   },
 

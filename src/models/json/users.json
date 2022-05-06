@@ -20,6 +20,13 @@
       "email": "bart@simpson.com",
       "password": "secret",
       "_id": "a18cc656-a6f8-42ac-a76f-1bd6f0f5d56a"
+    },
+    {
+      "firstName": "Philipp",
+      "lastName": "Bachfischer",
+      "email": "philipp.bachfischer@t-online.de",
+      "password": "Test",
+      "_id": "4dcbd93f-a201-4712-acf6-848d0ba91895"
     }
   ]
 }
