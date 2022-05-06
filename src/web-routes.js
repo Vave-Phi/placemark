@@ -1,5 +1,6 @@
 import { authController } from "./controllers/auth-controller.js";
 import { poiController } from "./controllers/poi-controller.js";
+import { adminController } from "./controllers/admin-controller.js";
 
 export const webRoutes = [
   { method: "GET", path: "/", config: authController.showLogin },
@@ -15,6 +16,9 @@ export const webRoutes = [
   { method: "POST", path: "/pois/create", config: poiController.create },
   { method: "POST", path: "/pois/update/{id}", config: poiController.update },
   { method: "GET", path: "/pois/delete/{id}", config: poiController.delete },
+
+  { method: "GET", path: "/admin", config: adminController.showAdmin },
+  { method: "GET", path: "/admin/delete/{id}", config: adminController.delete },
 
   { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } },
 ];
