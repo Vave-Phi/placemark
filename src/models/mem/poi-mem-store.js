@@ -5,7 +5,10 @@ let pois = [];
 export const poiMemStore = {
   async getAllPois(filter) {
     if (filter) {
-      return pois.filter((p) => p.name?.toLowerCase().includes(filter.toLowerCase()));
+      const { name, category } = filter;
+      const nameFilter = (p) => !name || p.name?.toLowerCase().includes(name?.toLowerCase());
+      const categoryFilter = (p) => !category || p.category === category;
+      return pois.filter((p) => nameFilter(p) && categoryFilter(p));
     }
     return pois;
   },

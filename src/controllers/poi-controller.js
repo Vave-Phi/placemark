@@ -3,14 +3,15 @@ import { PoiSpec, PoiSpecUpdate } from "../db/joi-schemas.js";
 import { POI_CATEGORIES } from "../constants.js";
 
 async function getHomeViewData(request) {
-  const { name } = request.query;
+  const { query } = request;
   const user = request.auth.credentials;
-  const pois = await db.poiStore.getAllPois(name);
+  const pois = await db.poiStore.getAllPois(query);
   return {
     title: "Placemark - POIs",
     pois,
     user,
-    query: name,
+    query,
+    options: POI_CATEGORIES,
   };
 }
 

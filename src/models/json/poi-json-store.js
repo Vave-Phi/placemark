@@ -9,7 +9,10 @@ export const poiJsonStore = {
   async getAllPois(filter) {
     await db.read();
     if (filter) {
-      return db.data.pois.filter((p) => p.name?.toLowerCase().includes(filter?.toLowerCase()));
+      const { name, category } = filter;
+      const nameFilter = (p) => !name || p.name?.toLowerCase().includes(name?.toLowerCase());
+      const categoryFilter = (p) => !category || p.category === category;
+      return db.data.pois.filter((p) => nameFilter(p) && categoryFilter(p));
     }
     return db.data.pois;
   },

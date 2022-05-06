@@ -1,7 +1,16 @@
 <form action="/pois" method="get">
   <div class="is-flex is-justify-content-end">
-    <div class="field pr-4">
-      <input class="input" type="text" placeholder="Enter POI name" name="name"value="{{query}}">
+    <div class="field mr-4">
+      <input class="input" type="text" placeholder="Enter POI name" name="name" value="{{query.name}}">
+    </div>
+    <div class="select mr-4">
+      <select name="category">
+        {{#select query.category}}
+          {{#each options}}
+            <option value="{{name}}">{{name}}</option>
+          {{/each}}
+        {{/select}}
+      </select>
     </div>
     <button class="button is-link">Find</button>
   </div>
