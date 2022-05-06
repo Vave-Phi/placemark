@@ -5,7 +5,8 @@
       "lastName": "Bachfischer",
       "email": "philipp.bachfischer@t-online.de",
       "password": "Test",
-      "_id": "4dcbd93f-a201-4712-acf6-848d0ba91895"
+      "isAdmin": true,
+      "_id": "830bf7f9-514f-4b4f-b4dc-0a07a8a763aa"
     }
   ]
 }

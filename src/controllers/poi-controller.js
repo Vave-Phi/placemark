@@ -4,12 +4,10 @@ import { POI_CATEGORIES } from "../constants.js";
 
 async function getHomeViewData(request) {
   const { query } = request;
-  const user = request.auth.credentials;
   const pois = await db.poiStore.getAllPois(query);
   return {
     title: "Placemark - POIs",
     pois,
-    user,
     query,
     options: POI_CATEGORIES,
   };
@@ -17,12 +15,10 @@ async function getHomeViewData(request) {
 
 async function getPoiViewData(request) {
   const { id } = request.params;
-  const user = request.auth.credentials;
   const poi = await db.poiStore.getPoiById(id);
   return {
     title: "Placemark - POI Details",
     poi,
-    user,
   };
 }
 

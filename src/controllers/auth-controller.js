@@ -25,6 +25,7 @@ export const authController = {
     },
     handler: async function (request, h) {
       const user = request.payload;
+      user.isAdmin = !!user.isAdmin;
       await db.userStore.addUser(user);
       return h.redirect("/");
     },

@@ -8,6 +8,7 @@ export const UserSpec = Joi.object()
     lastName: Joi.string().example("Simpson").required(),
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
+    isAdmin: Joi.alternatives(Joi.boolean(), Joi.string()).default(false),
   })
   .label("UserDetails");
 
