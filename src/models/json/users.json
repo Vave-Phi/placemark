@@ -1,12 +1,25 @@
 {
   "users": [
     {
-      "firstName": "Philipp",
-      "lastName": "Bachfischer",
-      "email": "philipp.bachfischer@t-online.de",
-      "password": "Test",
-      "isAdmin": true,
-      "_id": "830bf7f9-514f-4b4f-b4dc-0a07a8a763aa"
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret",
+      "_id": "93bed4a4-12e3-493d-901e-400f49216feb"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret",
+      "_id": "03850951-4632-413b-a6b0-e06839ee1ef9"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret",
+      "_id": "53caddb0-5a22-46de-bf89-83740ad55a5a"
     }
   ]
 }

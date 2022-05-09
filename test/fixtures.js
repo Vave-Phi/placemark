@@ -55,7 +55,7 @@ export const testPois = [
     desc: "Stone bridge in Regensburg",
   },
   {
-    firstName: "Regensburg Cathedral",
+    name: "Regensburg Cathedral",
     lat: 49.01906,
     lng: 12.09951,
     category: "Church",

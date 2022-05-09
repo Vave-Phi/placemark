@@ -46,7 +46,8 @@ async function init() {
   });
   server.auth.default("session");
   // db.initMem();
-  db.initJSON();
+  // db.initJSON();
+  await db.initMongo();
   hbsConfig();
   server.route(webRoutes);
   server.route(apiRoutes);

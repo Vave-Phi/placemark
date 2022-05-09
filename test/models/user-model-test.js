@@ -61,3 +61,4 @@ function runTestSuite(dbInit, name) {
 
 runTestSuite(() => db.initMem(), "User Memory Storage");
 runTestSuite(() => db.initJSON(), "User Json Storage");
+runTestSuite(() => db.initMongo(), "User Mongo Storage");

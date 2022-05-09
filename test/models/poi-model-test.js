@@ -44,11 +44,10 @@ function runTestSuite(dbInit, name) {
     });
 
     test("update One Poi - success", async () => {
-      const testPoiClone = { ...testPois[0] };
-      await db.poiStore.updatePoiById(testPois[0]._id, testPoiChanges);
-      const updatedPoi = await db.poiStore.getPoiById(testPois[0]._id);
+      const testPoiBefore = testPois[0];
+      const updatedPoi = await db.poiStore.updatePoiById(testPoiBefore._id, testPoiChanges);
       assertSubset(testPoiChanges, updatedPoi);
-      assert.notDeepEqual(updatedPoi, testPoiClone);
+      assert.notDeepEqual(updatedPoi, testPoiBefore);
     });
 
     test("get a poi - bad params", async () => {
@@ -72,3 +71,4 @@ function runTestSuite(dbInit, name) {
 
 runTestSuite(() => db.initMem(), "Poi Memory Storage");
 runTestSuite(() => db.initJSON(), "Poi Json Storage");
+runTestSuite(() => db.initMongo(), "Poi Mongo Storage");
