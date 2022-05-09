@@ -5,6 +5,7 @@ import { validationError } from "../logger.js";
 
 export const userApi = {
   find: {
+    auth: false,
     handler: async function (request, h) {
       try {
         return await db.userStore.getAllUsers();
@@ -19,6 +20,7 @@ export const userApi = {
   },
 
   findOne: {
+    auth: false,
     handler: async function (request, h) {
       try {
         const user = await db.userStore.getUserById(request.params.id);
@@ -34,10 +36,11 @@ export const userApi = {
     description: "Get one user",
     notes: "Returns details of one user",
     validate: { params: { id: IdSpec }, failAction: validationError },
-    response: { schema: UserSpec, failAction: validationError },
+    response: { schema: UserSpecDomain, failAction: validationError },
   },
 
   create: {
+    auth: false,
     handler: async function (request, h) {
       try {
         const user = await db.userStore.addUser(request.payload);
@@ -51,11 +54,12 @@ export const userApi = {
     },
     tags: ["api"],
     description: "Create a user",
-    validate: { payload: UserSpecDomain, failAction: validationError },
-    response: { schema: UserSpec, failAction: validationError },
+    validate: { payload: UserSpec, failAction: validationError },
+    response: { schema: UserSpecDomain, failAction: validationError },
   },
 
   deleteOne: {
+    auth: false,
     handler: async function (request, h) {
       try {
         // TODO only allow if user is admin (jwt needed first)
@@ -71,6 +75,7 @@ export const userApi = {
   },
 
   deleteAll: {
+    auth: false,
     handler: async function (request, h) {
       try {
         // TODO only allow if user is admin (jwt needed first)

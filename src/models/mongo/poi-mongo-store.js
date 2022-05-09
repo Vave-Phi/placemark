@@ -19,7 +19,7 @@ export const poiMongoStore = {
 
   async updatePoiById(id, changes) {
     console.log(id.length);
-    if (id.length !== 12) {
+    if (id.length !== 24) {
       return null;
     }
     if (id) {

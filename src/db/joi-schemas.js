@@ -24,7 +24,7 @@ export const UserCredentialsSpec = Joi.object()
   })
   .label("UserCredentials");
 
-export const UserArray = Joi.array().items(UserSpec).label("UserArray");
+export const UserArray = Joi.array().items(UserSpecDomain).label("UserArray");
 
 export const PoiSpec = Joi.object()
   .keys({
@@ -47,4 +47,4 @@ export const PoiSpecDomain = PoiSpecUpdate.keys({
   __v: Joi.number(),
 }).label("PoiDetailsDomain");
 
-export const PoiArray = Joi.array().items(PoiSpec).label("PoiArray");
+export const PoiArray = Joi.array().items(PoiSpecDomain).label("PoiArray");

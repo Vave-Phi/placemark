@@ -7,12 +7,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import HapiSwagger from "hapi-swagger";
 import Joi from "joi";
-import { webRoutes } from "./web-routes.js";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
 import { authController } from "./controllers/auth-controller.js";
 import config from "./config.js";
 import hbsConfig from "./hbs-config.js";
+import { webRoutes } from "./web-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
