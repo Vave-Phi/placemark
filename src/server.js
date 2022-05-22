@@ -12,7 +12,6 @@ import { db } from "./models/db.js";
 import { authController } from "./controllers/auth-controller.js";
 import config from "./config.js";
 import hbsConfig from "./hbs-config.js";
-import { webRoutes } from "./web-routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +19,7 @@ const __dirname = path.dirname(__filename);
 const swaggerOptions = {
   info: {
     title: "Placemark API",
-    version: "0.1",
+    version: "1.0",
   },
 };
 
@@ -62,7 +61,7 @@ async function init() {
   // db.initJSON();
   await db.initMongo();
   hbsConfig();
-  server.route(webRoutes);
+  // server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();
   console.log("Server running on %s", server.info.uri);
