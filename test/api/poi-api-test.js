@@ -1,13 +1,18 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
-import { testPoi, testPoiChanges, testPois } from "../fixtures.js";
-import { db } from "../../src/models/db.js";
+import { maggie, testPoi, testPoiChanges, testPois } from "../fixtures.js";
 import { placemarkService } from "./placemark-service.js";
 
 suite("Poi API tests", () => {
   setup(async () => {
-    await db.initMongo();
+    placemarkService.clearAuth();
+    await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
     await placemarkService.deleteAllPois();
+    await placemarkService.deleteAllUsers();
+    await placemarkService.createUser(maggie);
+    await placemarkService.authenticate(maggie);
+
     for (let i = 0; i < testPois.length; i += 1) {
       // eslint-disable-next-line no-await-in-loop
       delete testPois[i]._id;
