@@ -5,6 +5,15 @@ export const maggie = {
   lastName: "Simpson",
   email: "maggie@simpson.com",
   password: "secret",
+  isAdmin: true,
+};
+
+export const notAdmin = {
+  firstName: "NotAdmin",
+  lastName: "Simpson",
+  email: "notadmin@simpson.com",
+  password: "secret",
+  isAdmin: false,
 };
 
 export const testUsers = [
