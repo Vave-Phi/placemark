@@ -25,8 +25,9 @@ const swaggerOptions = {
 
 async function init() {
   const server = Hapi.server({
-    port: 3000,
+    port: 3001,
     host: "localhost",
+    routes: { cors: true },
   });
   await server.register(Vision);
   await server.register(Inert);
