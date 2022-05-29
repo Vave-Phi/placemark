@@ -1,19 +1,15 @@
 import Hapi from "@hapi/hapi";
-import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
+import Vision from "@hapi/vision";
 import jwt from "hapi-auth-jwt2";
-import Handlebars from "handlebars";
-import path from "path";
-import { fileURLToPath } from "url";
 import HapiSwagger from "hapi-swagger";
 import Joi from "joi";
 import { apiRoutes } from "./api-routes.js";
 import { db } from "./models/db.js";
-import hbsConfig from "./hbs-config.js";
 import { validate } from "./api/jwt-utils.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 const swaggerOptions = {
   info: {
@@ -29,25 +25,25 @@ async function init() {
     routes: { cors: true },
   });
   await server.register(Vision);
-  await server.register(Inert);
   // await server.register(Cookie);
+  await server.register(Inert);
   await server.register(jwt);
   await server.register({
     plugin: HapiSwagger,
     options: swaggerOptions,
   });
   server.validator(Joi);
-  server.views({
-    engines: {
-      hbs: Handlebars,
-    },
-    relativeTo: __dirname,
-    path: "./views",
-    layoutPath: "./views/layouts",
-    partialsPath: "./views/partials",
-    layout: true,
-    isCached: false,
-  });
+  // server.views({
+  //   engines: {
+  //     hbs: Handlebars,
+  //   },
+  //   relativeTo: __dirname,
+  //   path: "./views",
+  //   layoutPath: "./views/layouts",
+  //   partialsPath: "./views/partials",
+  //   layout: true,
+  //   isCached: false,
+  // });
   server.auth.strategy("jwt", "jwt", {
     key: process.env.cookie_password,
     validate,
@@ -56,7 +52,7 @@ async function init() {
   // db.initMem();
   // db.initJSON();
   await db.initMongo();
-  hbsConfig();
+  // hbsConfig();
   // server.route(webRoutes);
   server.route(apiRoutes);
   await server.start();

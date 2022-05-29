@@ -8,6 +8,7 @@ const poiSchema = new Schema({
   category: String,
   lat: Number,
   lng: Number,
+  img: String,
 });
 
 export const Poi = mongoose.model("Poi", poiSchema);

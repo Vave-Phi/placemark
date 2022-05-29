@@ -29,6 +29,8 @@ export const UserArray = Joi.array().items(UserSpecDomain).label("UserArray");
 export const PoiSpec = Joi.object()
   .keys({
     name: Joi.string().example("OTH Regensburg").required(),
+    lat: Joi.number().example(49.01643),
+    lng: Joi.number().example(12.10176),
   })
   .label("PoiDetails");
 
@@ -38,7 +40,9 @@ export const PoiSpecUpdate = Joi.object()
     lat: Joi.number().example(49.01643),
     lng: Joi.number().example(12.10176),
     desc: Joi.string().example("Lorem Ipsum"),
+    img: Joi.string().example("https://test.com/image.jpg"),
     category: Joi.string().example("University"),
+    weather: Joi.object().keys({}).unknown(true),
   })
   .label("PoiDetails");
 

@@ -13,11 +13,13 @@ export const poiMongoStore = {
   },
 
   async addPoi(poi) {
+    delete poi.weather;
     const poiObj = await Poi.create(poi);
     return this.getPoiById(poiObj._id);
   },
 
   async updatePoiById(id, changes) {
+    delete changes.weather;
     if (id.length !== 24) {
       return null;
     }
