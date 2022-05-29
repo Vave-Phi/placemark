@@ -103,6 +103,19 @@ export const userApi = {
     tags: ["api"],
     description: "Delete all users",
   },
+  isAdmin: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        const user = getUserFromRequest(request);
+        return user?.isAdmin;
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+  },
   authenticate: {
     auth: false,
     handler: async function (request, h) {

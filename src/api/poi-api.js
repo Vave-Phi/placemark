@@ -10,7 +10,7 @@ export const poiApi = {
     },
     handler: async function (request, h) {
       try {
-        return await db.poiStore.getAllPois();
+        return await db.poiStore.getAllPois(request.query);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }

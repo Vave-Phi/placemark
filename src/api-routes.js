@@ -5,6 +5,7 @@ export const apiRoutes = [
   { method: "GET", path: "/api/users", config: userApi.find },
   { method: "GET", path: "/api/users/{id}", config: userApi.findOne },
   { method: "POST", path: "/api/users", config: userApi.create },
+  { method: "GET", path: "/api/users/isadmin", config: userApi.isAdmin },
   { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
   { method: "DELETE", path: "/api/users", config: userApi.deleteAll },
   { method: "DELETE", path: "/api/users/{id}", config: userApi.deleteOne },
