@@ -21,6 +21,21 @@ export const userMongoStore = {
     return User.findOne({ email: email }).lean();
   },
 
+  async updateUserById(id, changes) {
+    if (id?.length !== 24) {
+      return null;
+    }
+    return User.findByIdAndUpdate(id, changes, { lean: true });
+  },
+
+  async addVisitedPoi(id, poiId) {
+    return this.updatePoiById(id, { $push: { visitedPois: poiId } });
+  },
+
+  async removeVisitedPoi(id, poiId) {
+    return this.updatePoiById(id, { $pull: { visitedPois: poiId } });
+  },
+
   async deleteUserById(id) {
     try {
       await User.deleteOne({ _id: id });
@@ -33,3 +48,7 @@ export const userMongoStore = {
     await User.deleteMany({});
   },
 };
+
+// TODO update user (inc/dec visited array)
+// TODO frontend visited button depending on visited array
+// TODO Tests for user update and inc dec

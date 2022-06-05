@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "./node_modules/.bin/nodemon  src/server.js",
-    "lint": "./node_modules/.bin/eslint . --ext .js",
+    "dev": "nodemon  src/server.js",
+    "lint": "node_modules/.bin/eslint . --ext .js",
     "test": "mocha --ui tdd test/**/*.js",
     "testApi": "mocha --ui tdd test/api/*.js",
     "testModel": "mocha --ui tdd test/models/*.js"
@@ -15,28 +15,31 @@
   "author": "Philipp Bachfischer",
   "license": "ISC",
   "devDependencies": {
-    "axios": "^0.26.1",
     "chai": "^4.3.6",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
-    "prettier": "^2.5.1",
     "mocha": "^9.2.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "@hapi/boom": "^9.1.4",
     "@hapi/cookie": "^11.0.2",
     "@hapi/hapi": "^20.2.1",
     "@hapi/inert": "^6.0.5",
     "@hapi/vision": "^6.1.0",
+    "cloudinary": "^1.30.0",
     "dotenv": "^16.0.0",
     "handlebars": "^4.7.7",
+    "hapi-auth-jwt2": "^10.2.0",
     "hapi-swagger": "^14.2.5",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "lowdb": "^3.0.0",
-    "uuid": "^8.3.2",
-    "mongoose": "^6.2.9"
+    "mongoose": "^6.2.9",
+    "uuid": "^8.3.2"
   }
 }
