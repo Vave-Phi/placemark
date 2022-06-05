@@ -14,13 +14,13 @@ export function createToken(user) {
     algorithm: "HS256",
     expiresIn: "1h",
   };
-  return jwt.sign(payload, process.env.cookie_password, options);
+  return jwt.sign(payload, process.env.COOKIE_PASSWORD, options);
 }
 
 export function decodeToken(token) {
   const userInfo = {};
   try {
-    const decoded = jwt.verify(token, process.env.cookie_password);
+    const decoded = jwt.verify(token, process.env.COOKIE_PASSWORD);
     userInfo.userId = decoded.id;
     userInfo.email = decoded.email;
     userInfo.isAdmin = decoded.isAdmin;
@@ -43,7 +43,7 @@ export function getUserFromRequest(request) {
   try {
     const { authorization } = request.headers;
     const token = authorization.split(" ")[1];
-    user = jwt.verify(token, process.env.cookie_password);
+    user = jwt.verify(token, process.env.COOKIE_PASSWORD);
   } catch (e) {
     user = null;
   }
