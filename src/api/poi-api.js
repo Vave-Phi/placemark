@@ -14,6 +14,7 @@ export const poiApi = {
     handler: async function (request, h) {
       try {
         const pois = await db.poiStore.getAllPois(request.query);
+        pois.forEach((p) => (p.creator = p.creator.toString()));
         await weatherService.getWeatherForPois(pois);
         return pois;
       } catch (err) {
@@ -34,6 +35,7 @@ export const poiApi = {
       try {
         const poi = await db.poiStore.getPoiById(request.params.id);
         poi.weather = await weatherService.getWeather(poi.lat, poi.lng);
+        poi.creator = poi.creator.toString();
         if (!poi) {
           return Boom.notFound("No Poi with this id");
         }
@@ -89,6 +91,22 @@ export const poiApi = {
     description: "Update a poi",
     validate: { params: { id: IdSpec }, payload: PoiSpecUpdate, failAction: validationError },
     response: { schema: PoiSpecDomain, failAction: validationError },
+  },
+
+  updateVisitedAmount: {
+    auth: {
+      strategy: "jwt",
+    },
+    handler: async function (request, h) {
+      try {
+        return db.poiStore.increment(request.params.id, "visitedAmount");
+      } catch (err) {
+        return Boom.serverUnavailable("Database Error");
+      }
+    },
+    tags: ["api"],
+    description: "Update a pois visited amount",
+    validate: { params: { id: IdSpec }, failAction: validationError },
   },
 
   deleteOne: {

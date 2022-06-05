@@ -20,13 +20,14 @@ export const poiMongoStore = {
 
   async updatePoiById(id, changes) {
     delete changes.weather;
-    if (id.length !== 24) {
+    if (id?.length !== 24) {
       return null;
     }
-    if (id) {
-      return Poi.findByIdAndUpdate(id, changes, { new: true, lean: true });
-    }
-    return null;
+    return Poi.findByIdAndUpdate(id, changes, { new: true, lean: true });
+  },
+
+  async increment(id, field) {
+    return this.updatePoiById(id, { $inc: { [field]: 1 } });
   },
 
   async deletePoiById(id) {

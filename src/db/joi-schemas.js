@@ -9,6 +9,7 @@ export const UserSpec = Joi.object()
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),
     isAdmin: Joi.alternatives(Joi.boolean(), Joi.string()).default(false),
+    visitedPois: Joi.array().items(IdSpec).default([]),
   })
   .label("UserDetails");
 
@@ -29,6 +30,7 @@ export const UserArray = Joi.array().items(UserSpecDomain).label("UserArray");
 export const PoiSpec = Joi.object()
   .keys({
     name: Joi.string().example("OTH Regensburg").required(),
+    creator: Joi.string().example("6293c32918fbd5188ad9bfd8").required(),
     lat: Joi.number().example(49.01643),
     lng: Joi.number().example(12.10176),
   })
@@ -37,12 +39,14 @@ export const PoiSpec = Joi.object()
 export const PoiSpecUpdate = Joi.object()
   .keys({
     name: Joi.string().example("OTH Regensburg"),
+    creator: Joi.string().example("6293c32918fbd5188ad9bfd8"),
     lat: Joi.number().example(49.01643),
     lng: Joi.number().example(12.10176),
     desc: Joi.string().example("Lorem Ipsum"),
     img: Joi.string().example("https://test.com/image.jpg"),
     category: Joi.string().example("University"),
-    weather: Joi.object().keys({}).unknown(true),
+    weather: Joi.object(),
+    visitedAmount: Joi.number().example(0),
   })
   .label("PoiDetails");
 
