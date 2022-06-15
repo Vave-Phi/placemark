@@ -9,7 +9,10 @@ const poiSchema = new Schema({
   lat: Number,
   lng: Number,
   visitedAmount: Number,
-  img: String,
+  gallery: {
+    type: [String],
+    default: [],
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",

@@ -5,6 +5,7 @@ import { IdSpec, PoiArray, PoiSpecDomain, PoiSpecUpdate } from "../db/joi-schema
 import { validationError } from "../logger.js";
 import { imageStore } from "../models/image-store.js";
 import { weatherService } from "../models/weather-service.js";
+import { getUserFromRequest } from "./jwt-utils.js";
 
 export const poiApi = {
   find: {
@@ -14,10 +15,13 @@ export const poiApi = {
     handler: async function (request, h) {
       try {
         const pois = await db.poiStore.getAllPois(request.query);
-        pois.forEach((p) => (p.creator = p.creator.toString()));
+        for (const p of pois) {
+          p.creator = p.creator?.toString();
+        }
         await weatherService.getWeatherForPois(pois);
         return pois;
       } catch (err) {
+        console.log(err);
         return Boom.serverUnavailable("Database Error");
       }
     },
@@ -35,7 +39,7 @@ export const poiApi = {
       try {
         const poi = await db.poiStore.getPoiById(request.params.id);
         poi.weather = await weatherService.getWeather(poi.lat, poi.lng);
-        poi.creator = poi.creator.toString();
+        poi.creator = poi.creator?.toString();
         if (!poi) {
           return Boom.notFound("No Poi with this id");
         }
@@ -57,8 +61,10 @@ export const poiApi = {
     },
     handler: async function (request, h) {
       try {
-        const poi = await db.poiStore.addPoi(request.payload);
+        const user = getUserFromRequest(request);
+        const poi = await db.poiStore.addPoi({ ...request.payload, creator: user?.id });
         if (poi) {
+          poi.creator = poi.creator?.toString();
           return h.response(poi).code(201);
         }
         return Boom.badImplementation("error creating poi");
@@ -80,6 +86,7 @@ export const poiApi = {
       try {
         const poi = await db.poiStore.updatePoiById(request.params.id, request.payload);
         if (poi) {
+          poi.creator = poi.creator?.toString();
           return h.response(poi).code(200);
         }
         return Boom.badImplementation("error updating poi");
@@ -151,12 +158,8 @@ export const poiApi = {
         if (Object.keys(file).length === 0) {
           return Boom.badImplementation("error uploading poi image");
         }
-        const poi = await db.poiStore.getPoiById(id);
-        if (poi.img) {
-          await imageStore.deleteImage(poi.img);
-        }
         const url = await imageStore.uploadImage(request.payload.image);
-        await db.poiStore.updatePoiById(id, { img: url });
+        await db.poiStore.updatePoiById(id, { $push: { gallery: url } });
         return url;
       } catch (err) {
         console.log(err);
@@ -182,19 +185,16 @@ export const poiApi = {
     handler: async function (request, h) {
       try {
         const { id } = request.params;
-        const poi = await db.poiStore.getPoiById(id);
-        if (poi.img) {
-          await imageStore.deleteImage(poi.img);
-          await db.poiStore.updatePoiById(id, { img: null });
-          return h.response().code(204);
-        }
-        return Boom.badImplementation("error deleting poi image");
+        const { url } = request.query;
+        await imageStore.deleteImage(url);
+        await db.poiStore.updatePoiById(id, { $pull: { gallery: url } });
+        return h.response().code(204);
       } catch (err) {
         return Boom.serverUnavailable("Database Error");
       }
     },
     tags: ["api"],
     description: "Delete a poi image",
-    validate: { params: { id: IdSpec }, failAction: validationError },
+    validate: { params: { id: IdSpec, url: Joi.string() }, failAction: validationError },
   },
 };

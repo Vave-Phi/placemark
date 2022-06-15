@@ -43,7 +43,7 @@ export const PoiSpecUpdate = Joi.object()
     lat: Joi.number().example(49.01643),
     lng: Joi.number().example(12.10176),
     desc: Joi.string().example("Lorem Ipsum"),
-    img: Joi.string().example("https://test.com/image.jpg"),
+    gallery: Joi.array().items(Joi.string()).example(["https://test.com/image.jpg"]),
     category: Joi.string().example("University"),
     weather: Joi.object(),
     visitedAmount: Joi.number().example(0),
