@@ -2,6 +2,9 @@ import { Poi } from "./poi.js";
 
 export const poiMongoStore = {
   async getAllPois(filter) {
+    if (filter.name) {
+      filter.name = { $regex: filter.name, $options: "i" };
+    }
     return Poi.find(filter).lean();
   },
 
